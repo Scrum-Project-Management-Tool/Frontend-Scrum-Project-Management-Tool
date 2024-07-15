@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-color: rgb(243 244 246); /* Equivalent to bg-gray-500 */
+}
+
+.custom-focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #1e3a8a;
+}
+
