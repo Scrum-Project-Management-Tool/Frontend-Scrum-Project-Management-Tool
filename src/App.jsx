@@ -10,11 +10,8 @@ function App() {
   
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/register" Component={Register}/>
-        </Routes>
-    </Router>
+    <>
+    </>
     
   );
 }
