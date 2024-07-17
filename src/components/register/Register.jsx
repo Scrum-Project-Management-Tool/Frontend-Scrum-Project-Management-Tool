@@ -1,4 +1,3 @@
-// src/Register.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,6 +10,7 @@ const Register = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [registrationMessage, setRegistrationMessage] = useState('');
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -19,7 +19,13 @@ const Register = () => {
       ...formData,
       [name]: value,
     });
-    
+    // Clear validation errors when user edits the form
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: '',
+      });
+    }
   };
 
   const validateForm = () => {
@@ -39,23 +45,63 @@ const Register = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
     setErrors(validationErrors);
-
+  
     if (Object.keys(validationErrors).length === 0) {
-      // Handle successful registration logic
-      console.log('Form data submitted:', formData);
-      navigate('/login');
+      try {
+        const response = await fetch('http://localhost:8000/api/v1/users/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username:formData.username,
+            email:formData.email,
+            password:formData.password,
+            fullname:formData.fullname
+          }),
+        });
+  
+        console.log('Response status:', response.status);
+  
+        if (response.ok) {
+          // Registration successful
+          setRegistrationMessage('User registered successfully!');
+          navigate('/login');
+        } else {
+          // Log the response text to understand what is being returned
+          const text = await response.text();
+          console.log('Response text:', text);
+          
+          // Attempt to parse the response text as JSON
+          try {
+            const data = JSON.parse(text);
+            setRegistrationMessage(`Registration failed: ${data.message}`);
+          } catch (error) {
+            setRegistrationMessage('Registration failed: Unexpected response from server');
+          }
+        }
+      } catch (error) {
+        console.error('Error registering user:', error);
+        setRegistrationMessage('An error occurred during registration.');
+      }
     }
   };
+  
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen ">
-      <img src="https://res.cloudinary.com/diwt649vq/image/upload/v1721033025/cdot_logo_q4yvd6.png "alt="Description" className="mb-8 w-50 h-32 object-cover" />
+      <img src="https://res.cloudinary.com/diwt649vq/image/upload/v1721033025/cdot_logo_q4yvd6.png" alt="Logo" className="mb-8 w-50 h-32 object-cover" />
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded shadow-md">
         <h2 className="text-2xl font-bold text-center">Register</h2>
+        {registrationMessage && (
+          <div className={`p-2 ${registrationMessage.includes('failed') ? 'bg-red-100' : 'bg-green-100'} rounded-md text-center`}>
+            <p className={`text-sm ${registrationMessage.includes('failed') ? 'text-red-500' : 'text-green-500'}`}>{registrationMessage}</p>
+          </div>
+        )}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">Username</label>
@@ -123,5 +169,17 @@ const Register = () => {
 };
 
 export default Register;
+
+
+/*
+Method: Specifies the HTTP method used for the request (POST in this case), indicating that data will be sent to the server to create a
+ new resource (register a new user).
+Headers: Includes metadata about the request, such as Content-Type, which specifies that the body of 
+the request contains JSON data ('application/json').
+Body: Contains the actual data (formData) to be sent to the server. It's converted to a JSON string (JSON.stringify(formData)) before being sent.
+
+
+
+*/
 
               
