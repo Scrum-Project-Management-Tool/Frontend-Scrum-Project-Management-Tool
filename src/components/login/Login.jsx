@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    usernameOrEmail: '',
+    email: '',
     password: '',
   });
   const navigate = useNavigate();
@@ -22,10 +22,10 @@ const Login = () => {
     const newErrors = {};
     const emailRegex = /\S+@\S+\.\S+/;
 
-    if (!formData.usernameOrEmail) {
-      newErrors.usernameOrEmail = 'Username or Email is required';
-    } else if (emailRegex.test(formData.usernameOrEmail) === false && formData.usernameOrEmail.includes('@')) {
-      newErrors.usernameOrEmail = 'Email is invalid';
+    if (!formData.email) {
+      newErrors.email = 'Email is required';
+    } else if (emailRegex.test(formData.email) === false && formData.email.includes('@')) {
+      newErrors.email = 'Email is invalid';
     }
     if (!formData.password) {
       newErrors.password = 'Password is required';
@@ -37,37 +37,42 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    // Validate the form
     const validationErrors = validateForm();
     setErrors(validationErrors);
   
     if (Object.keys(validationErrors).length === 0) {
       try {
+        // Log the formData to verify its content
+        console.log('Form Data:', formData);
+
+      const requestBody = JSON.stringify({
+        email: formData.email,
+        password: formData.password
+      });
+      console.log('Request Body:', requestBody);
+  
         const response = await fetch('http://localhost:8000/api/v1/users/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            usernameOrEmail: formData.usernameOrEmail,
-            password: formData.password
-          }),
+          body: requestBody
         });
   
         if (response.ok) {
           // Login successful
           const data = await response.json();
           console.log('Login successful:', data);
-          navigate('/dashboard'); // Example navigation to dashboard
+          navigate('/Register'); // Example navigation to dashboard
         } else {
           // Login failed
           const text = await response.text(); // Read the error response as text
           console.error('Error logging in:', text);
           if (response.status === 404) {
             setErrorMessage('User not registered. Please create an account.');
-          } else {
-            // Display a generic error message
-            setErrorMessage('Login failed. Please try again later.');
-          }
+          } 
         }
       } catch (error) {
         console.error('Error logging in:', error);
@@ -75,6 +80,7 @@ const Login = () => {
       }
     }
   };
+  
   
 
   const navigateToRegister = () => {
@@ -92,15 +98,15 @@ const Login = () => {
         <h2 className="text-2xl font-bold text-center">Login</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Username or Email</label>
+            <label className="block text-sm font-medium text-gray-700">Email</label>
             <input
               type="text"
-              name="usernameOrEmail"
-              value={formData.usernameOrEmail}
+              name="email"
+              value={formData.email}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg shadow-sm custom-focus-ring"
             />
-            {errors.usernameOrEmail && <p className="text-red-500 text-xs mt-1">{errors.usernameOrEmail}</p>}
+            {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Password</label>
