@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProjectSubmissionForm = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ const ProjectSubmissionForm = () => {
       [name]: value,
     });
   };
+  const navigate=useNavigate();
 
   const validateForm = () => {
     const newErrors = {};
@@ -51,6 +53,8 @@ const ProjectSubmissionForm = () => {
         if (response.ok) {
           const data = await response.json();
           console.log('Project created successfully', data);
+          navigate('/dummy')
+
         }
       } catch (error) {
         console.log('Error in creating project', error);
