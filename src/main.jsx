@@ -7,15 +7,19 @@ import Register from './components/register/Register.jsx'
 import Login from './components/login/Login.jsx'
 import Projectsubmissionform from './components/projectsubmissionform/Projectsubmissionform.jsx'
 import ProjectDashboard from './pages/ProjectDashboard.jsx'
+import LandingPage from './pages/LandingPage.jsx'
+import AllProjectDashboardDummy from './pages/AllProjectDashboardDummy.jsx'
 
 
 const router=createBrowserRouter(
   createRoutesFromElements(
     <Route>
+      <Route path='/' element={<LandingPage/>}/>
       <Route path ='/register' element={<Register/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/createproject' element={<Projectsubmissionform/>}/>
      <Route path='/projectdashboard' element={<ProjectDashboard/> }/>
+     <Route path='/dummy' element={<AllProjectDashboardDummy/>}/>
       
      
     </Route>

@@ -65,7 +65,7 @@ const Login = () => {
           // Login successful
           const data = await response.json();
           console.log('Login successful:', data);
-          navigate('/Register'); // Example navigation to dashboard
+          navigate('/dummy'); // Example navigation to dashboard
         } else {
           // Login failed
           const text = await response.text(); // Read the error response as text
