@@ -6,6 +6,8 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import Register from './components/register/Register.jsx'
 import Login from './components/login/Login.jsx'
 import Projectsubmissionform from './components/projectsubmissionform/Projectsubmissionform.jsx'
+import ProjectDashboard from './pages/ProjectDashboard.jsx'
+
 
 const router=createBrowserRouter(
   createRoutesFromElements(
@@ -13,6 +15,9 @@ const router=createBrowserRouter(
       <Route path ='/register' element={<Register/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/createproject' element={<Projectsubmissionform/>}/>
+     <Route path='/projectdashboard' element={<ProjectDashboard/> }/>
+      
+     
     </Route>
   )
 )
