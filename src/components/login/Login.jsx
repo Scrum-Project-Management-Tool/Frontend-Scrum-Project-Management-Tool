@@ -65,6 +65,9 @@ const Login = () => {
           // Login successful
           const data = await response.json();
           console.log('Login successful:', data);
+        //  localStorage.setItem('accessToken', data.token); // Save token to local storage
+     // console.log('Token saved:', data.token);
+      localStorage.setItem('username', data.message.user.username)
           navigate('/dummy'); // Example navigation to dashboard
         } else {
           // Login failed
