@@ -65,10 +65,10 @@ const Login = () => {
           // Login successful
           const data = await response.json();
           console.log('Login successful:', data);
-        //  localStorage.setItem('accessToken', data.token); // Save token to local storage
-     // console.log('Token saved:', data.token);
+          localStorage.setItem('accessToken', data.message.accessToken); // Save token to local storage
+      console.log('Token saved:', data.message.accessToken);
       localStorage.setItem('username', data.message.user.username)
-          navigate('/dummy'); // Example navigation to dashboard
+          navigate('/allproject'); // Example navigation to dashboard
         } else {
           // Login failed
           const text = await response.text(); // Read the error response as text
