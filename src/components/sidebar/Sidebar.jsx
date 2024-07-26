@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SettingsTwoToneIcon from '@mui/icons-material/SettingsTwoTone';
+import { Link } from 'react-router-dom';
 
 const Sidebar = ({
   bgColor = 'bg-gray-800',
@@ -43,7 +44,9 @@ const Sidebar = ({
             {section.dropdown && openDropdowns[index] && (
               <div className={`${dropdownMarginTop} ${dropdownBgColor} rounded ${dropdownPadding}`}>
                 {section.dropdown.map((item, idx) => (
-                  <button key={idx} className={`w-full text-left ${dropdownPadding} rounded ${buttonHoverBgColor}`}>
+                  <button key={idx}
+                   className={`w-full text-left ${dropdownPadding} rounded ${buttonHoverBgColor}`}
+                   onClick={item.onClick}>
                     {item.label}
                   </button>
                 ))}
