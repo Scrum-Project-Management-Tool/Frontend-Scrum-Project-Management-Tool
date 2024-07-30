@@ -96,6 +96,7 @@ const UserStory = () => {
           type="button"
           className="absolute top-4 right-4 bg-gray-200 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-300 z-50"
           onClick={handleDropdownToggle}
+          
         >
           {selectedOption}
         </button>
@@ -154,7 +155,8 @@ const UserStory = () => {
               <button
                 type="button"
                 onClick={() => fileInputRef.current.click()}
-                className="w-32 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 text-left"
+                className="w-32 text-white py-2 px-4 rounded-md hover:bg-blue-800 text-left"
+                style={{ backgroundColor: '#1e3a8a' }}
               >
                 Attachments
               </button>
@@ -175,7 +177,8 @@ const UserStory = () => {
             <button
               type="submit"
               onClick={handleSubmit}
-              className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+              className="text-white py-2 px-4 rounded-md hover:bg-blue-800"
+              style={{ backgroundColor: '#1e3a8a' }}
             >
               Create
             </button>

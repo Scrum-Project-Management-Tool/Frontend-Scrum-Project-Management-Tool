@@ -14,6 +14,7 @@ import LandingPage from './pages/LandingPage.jsx';
 import BacklogPage from './pages/BacklogPage.jsx';
 import AllProjectDashboard from './pages/AllProjectDashboard.jsx';
 import UserStory from './components/userstory/UserStory.jsx';
+import UserStoryPage from './pages/UserStoryPage.jsx';
 
 // Define the router with routes
 const router = createBrowserRouter([
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: '/userstory',
     element: <UserStory />,
+  },
+  {
+    path: '/userstorydashboard',
+    element: <UserStoryPage/>,
   },
 ]);
 

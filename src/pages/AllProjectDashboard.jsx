@@ -65,6 +65,14 @@ function AllProjectDashboard() {
                        onClick={() => handleProjectClick(project)}>
                         <h3 className="text-xl font-bold">{project.title}</h3>
                         <p>{project.description}</p>
+                        <div className="flex justify-center mb-4">
+                <button
+                  style={{ backgroundColor: '#1e3a8a' }}
+                  className="text-white px-4 py-2 rounded hover:bg-blue-500"
+                >
+                  Go to Project
+                </button>
+              </div>
                     </div>
                 ))}
             </div>
