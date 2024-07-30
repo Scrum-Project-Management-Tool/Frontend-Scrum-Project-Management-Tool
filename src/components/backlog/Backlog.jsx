@@ -3,8 +3,10 @@ import Navbar from '../navbar/Navbar';
 import Sidebar from '../sidebar/Sidebar';
 import RestartAltRoundedIcon from '@mui/icons-material/RestartAltRounded';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import { useNavigate } from 'react-router-dom';
 
 const Backlog = () => {
+  const navigate=useNavigate();
   const leftSections = [
     {
       label: 'Scrum',
@@ -28,6 +30,7 @@ const Backlog = () => {
               <button
                 style={{ backgroundColor: '#1e3a8a' }}
                 className="text-white px-4 py-2 rounded"
+                onClick={()=>navigate('/userstory')}
               >
                 User Story
               </button>

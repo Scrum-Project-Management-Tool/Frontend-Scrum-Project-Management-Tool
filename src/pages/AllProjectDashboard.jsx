@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/navbar/Navbar';
 
+
 function AllProjectDashboard() {
     const navigate = useNavigate();
     const [projects, setProjects] = useState([]);
