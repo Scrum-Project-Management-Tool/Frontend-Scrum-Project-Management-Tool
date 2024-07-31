@@ -1,16 +1,27 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useContext} from 'react';
 import Sidebar from '../components/sidebar/Sidebar';
 import RestartAltRoundedIcon from '@mui/icons-material/RestartAltRounded';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import Navbar from '../components/navbar/Navbar'
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Projectcontext from '../contexts/Projectcontext';
 
 const ProjectDashboard = () => {
+  const {updateProjectId}=useContext(Projectcontext);
 
   const navigate=useNavigate();
   const location = useLocation();
   const project = location.state?.project; 
+  console.log(project);
+  console.log(project._id);
+
+  useEffect(() => {
+    if (project && project._id) {
+      updateProjectId(project._id); // Update context with the current project ID
+    }
+  }, [project, updateProjectId]);
+
   const handleclick=()=>{
     navigate('/projectbacklog')
   }
