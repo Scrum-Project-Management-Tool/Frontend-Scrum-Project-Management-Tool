@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
+
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -9,6 +11,8 @@ const Login = () => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -68,7 +72,8 @@ const Login = () => {
           localStorage.setItem('accessToken', data.message.accessToken); // Save token to local storage
       console.log('Token saved:', data.message.accessToken);
       localStorage.setItem('username', data.message.user.username)
-          navigate('/allproject'); // Example navigation to dashboard
+      
+      navigate('/allproject'); // Example navigation to dashboard
         } else {
           // Login failed
           const text = await response.text(); // Read the error response as text

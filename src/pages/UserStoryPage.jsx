@@ -70,7 +70,7 @@ function UserStoryPage() {
         const errorText = await response.text();
         throw new Error(`Network response was not ok: ${response.status} ${errorText}`);
       }
-console.log("Task created successfully")
+      console.log("Task created successfully");
       setTaskInput('');
       setTaskStatus('new');
       handleCloseModal();
@@ -131,7 +131,7 @@ console.log("Task created successfully")
           </button>
         </Navbar>
         
-        <div className="relative mt-[20rem]">
+        <div className="relative mt-12"> {/* Adjusted margin-top */}
           <button
             type="button"
             onClick={() => fileInputRef.current.click()}
@@ -211,9 +211,21 @@ console.log("Task created successfully")
             </Dialog>
           </div>
         </div>
+        <Sidebar 
+            sections={rightSections} 
+            side="right" 
+            width="w-64" 
+            height="h-full" 
+            top="top-16" 
+            padding="p-4" 
+            bgColor="bg-gray-700" 
+            textColor="text-white" 
+            showSettingsButton={false} // Hide settings button in right sidebar
+          />
       </div>
     </div>
   );
 }
 
 export default UserStoryPage;
+

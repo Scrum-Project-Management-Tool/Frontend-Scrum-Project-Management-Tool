@@ -29,6 +29,12 @@ const Sidebar = ({
     }));
   };
 
+  const handleButtonClick = (item) => {
+    if (item.onClick) {
+      item.onClick();
+    }
+  };
+
   return (
     <div className={`${width} ${bgColor} ${textColor} ${height} ${position} ${side}-0 ${top} ${padding} flex flex-col`}>
       <div className="flex-grow">
@@ -36,7 +42,7 @@ const Sidebar = ({
           <div key={index} className="mt-4">
             <button
               className={`w-full text-left ${buttonBgColor} ${dropdownPadding} rounded flex items-center`}
-              onClick={() => section.dropdown && toggleDropdown(index)}
+              onClick={() => section.dropdown ? toggleDropdown(index) : handleButtonClick(section)}
             >
               {section.icon}
               {section.label}
@@ -46,7 +52,7 @@ const Sidebar = ({
                 {section.dropdown.map((item, idx) => (
                   <button key={idx}
                    className={`w-full text-left ${dropdownPadding} rounded ${buttonHoverBgColor}`}
-                   onClick={item.onClick}>
+                   onClick={() => handleButtonClick(item)}>
                     {item.label}
                   </button>
                 ))}
@@ -68,6 +74,7 @@ const Sidebar = ({
 };
 
 export default Sidebar;
+
 
 
 
