@@ -8,6 +8,7 @@ import Projectcontext from '../../contexts/Projectcontext';
 import { isValidObjectId } from '../../utils';
 import AddIcon from '@mui/icons-material/Add';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import ProjectDropdown from '../projectsdropdown/ProjectDropdown';
 
 
 const Backlog = () => {
@@ -19,6 +20,7 @@ const Backlog = () => {
 
   useEffect(() => {
     // Define the async function to fetch data
+    console.log('Project ID n useEffect:', projectId);
     const fetchUserStories = async () => {
       const projectIdStr = String(projectId).trim();
 
@@ -44,6 +46,7 @@ const Backlog = () => {
         }
 
         const data = await response.json();
+        console.log('Fetched data :', data);
         if (data.success && Array.isArray(data.message)) {
           setUserStories(data.message);
         } else {
@@ -83,7 +86,8 @@ const Backlog = () => {
 
   return (
     <div className="flex flex-col h-screen">
-      <Navbar />
+      <Navbar/>
+        
       <div className="flex flex-1">
         <Sidebar sections={leftSections} showSettingsButton={true} />
         <div className="flex flex-1 justify-center items-center p-4">

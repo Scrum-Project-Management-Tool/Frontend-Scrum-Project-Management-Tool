@@ -24,6 +24,7 @@ const ProjectDashboard = () => {
   useEffect(() => {
     if (project && project._id) {
       updateProjectId(project._id);
+     
       setSelectedProject(project);
     }
   }, [project, updateProjectId]);
@@ -38,7 +39,7 @@ const ProjectDashboard = () => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`, // Added space between 'Bearer' and token
+            'Authorization': `Bearer${token}`, // Added space between 'Bearer' and token
           },
         });
 
