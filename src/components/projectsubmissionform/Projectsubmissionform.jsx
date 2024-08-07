@@ -55,7 +55,7 @@ const ProjectSubmissionForm = () => {
 
         if (response.ok) {
           const data = await response.json();
-          console.log('Project created successfully', data);
+          
           navigate('/allproject');
         } else {
           const errorData = await response.json();

@@ -28,7 +28,7 @@ function AllProjectDashboard() {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
-                console.log(data);
+               
                 if (Array.isArray(data.message)) {
                     setProjects(data.message);
                 } else {

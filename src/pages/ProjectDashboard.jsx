@@ -9,7 +9,7 @@ import { Modal, TextField, Button, Box, Menu, MenuItem } from '@mui/material';
 
 const ProjectDashboard = () => {
   const { updateProjectId ,projectId } = useContext(Projectcontext);
-  console.log('Current Project ID:', projectId);
+
   const [openPopup, setOpenPopup] = useState(false);
   const [userEmails, setUserEmails] = useState('');
   const [error, setError] = useState('');
@@ -29,8 +29,7 @@ const ProjectDashboard = () => {
     }
   }, [project, updateProjectId]);
 
-  console.log("Current Project Id", projectId);
-
+ 
   useEffect(() => {
     const fetchAssignedProjects = async () => {
       const token = localStorage.getItem('accessToken');

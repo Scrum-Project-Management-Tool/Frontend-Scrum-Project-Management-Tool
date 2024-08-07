@@ -65,7 +65,7 @@ const Register = () => {
           }),
         });
   
-        console.log('Response status:', response.status);
+      
   
         if (response.ok) {
           // Registration successful

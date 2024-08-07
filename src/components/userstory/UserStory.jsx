@@ -14,7 +14,7 @@ const UserStory = () => {
   const navigate=useNavigate();
 
   const {projectId}=useContext(Projectcontext);
-  console.log('Current Project ID:', projectId);
+  
 
   const handleDropdownToggle = () => {
     setDropdownOpen(prev => !prev);
@@ -47,7 +47,7 @@ const UserStory = () => {
     // Proceed with form submission logic
     try{
       const token = localStorage.getItem('accessToken');
-      console.log(token);
+      
       const response=await fetch('http://localhost:8000/api/v1/userstories/new',{
         method:'POST',
         headers:{
