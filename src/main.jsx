@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ProjectProvider } from './contexts/Projectcontextprovider.jsx'; // Adjust import path if needed
 import { UserProvider } from './contexts/UserContextProvider.jsx';
+import { UseridProvider } from './contexts/UseridcontextProvider.jsx';
 
 import App from './App.jsx';
 import './index.css';
@@ -62,7 +63,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ProjectProvider>
       <UserProvider>
+        
       <RouterProvider router={router} />
+      
       </UserProvider>
     </ProjectProvider>
   </React.StrictMode>

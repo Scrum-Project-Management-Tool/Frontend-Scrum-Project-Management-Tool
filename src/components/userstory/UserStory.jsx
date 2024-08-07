@@ -9,7 +9,7 @@ const UserStory = () => {
   const [fileName, setFileName] = useState('');
   const [errors, setErrors] = useState({});
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('New');
+  const [selectedOption, setSelectedOption] = useState('Status');
   const fileInputRef = useRef(null);
   const navigate=useNavigate();
 
@@ -36,7 +36,7 @@ const UserStory = () => {
     const newErrors = {};
     if (!subject) newErrors.subject = 'Subject is required';
     if (!description) newErrors.description = 'Description is required';
-    if (!fileName) newErrors.attachment = 'Attachment is required';
+    
 
     // If there are errors, set the errors state and stop form submission
     if (Object.keys(newErrors).length > 0) {
@@ -58,9 +58,10 @@ const UserStory = () => {
         body:JSON.stringify({
           projectId,
           subject,
+          
           description,
           status:selectedOption,
-          attachment:fileName
+          
         }),
       })
       if (!response.ok) {
@@ -170,7 +171,7 @@ const UserStory = () => {
                 <span className="ml-4 text-gray-700">{fileName}</span>
               )}
             </div>
-            {errors.attachment && <p className="text-red-500 text-sm mt-1">{errors.attachment}</p>}
+            
           </div>
 
           <div className="flex justify-center mt-6">

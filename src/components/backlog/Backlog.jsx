@@ -6,6 +6,10 @@ import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlin
 import { useNavigate, useLocation } from 'react-router-dom';
 import Projectcontext from '../../contexts/Projectcontext';
 import { isValidObjectId } from '../../utils';
+import AddIcon from '@mui/icons-material/Add';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import ProjectDropdown from '../projectsdropdown/ProjectDropdown';
+
 
 const Backlog = () => {
   const navigate = useNavigate();
@@ -16,6 +20,7 @@ const Backlog = () => {
 
   useEffect(() => {
     // Define the async function to fetch data
+    console.log('Project ID n useEffect:', projectId);
     const fetchUserStories = async () => {
       const projectIdStr = String(projectId).trim();
 
@@ -41,6 +46,7 @@ const Backlog = () => {
         }
 
         const data = await response.json();
+        console.log('Fetched data :', data);
         if (data.success && Array.isArray(data.message)) {
           setUserStories(data.message);
         } else {
@@ -70,10 +76,18 @@ const Backlog = () => {
       icon: <BookmarkBorderOutlinedIcon className="mr-2" />,
     },
   ];
+  const rightSections = [
+    {label: 'SPRINTS',
+      icon:<FiberManualRecordIcon className='mr-2'/>
+
+    },
+    { label: 'Add Sprint', icon: <AddIcon className="mr-2" />, onClick: () => {} }
+  ];
 
   return (
     <div className="flex flex-col h-screen">
-      <Navbar />
+      <Navbar/>
+        
       <div className="flex flex-1">
         <Sidebar sections={leftSections} showSettingsButton={true} />
         <div className="flex flex-1 justify-center items-center p-4">
@@ -102,17 +116,17 @@ const Backlog = () => {
               </ul>
             </div>
           </div>
-          <div className="absolute top-20 right-4 p-4 bg-gray-200 shadow-lg rounded-lg">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold mr-4">Sprints</h2>
-              <button
-                style={{ backgroundColor: '#1e3a8a' }}
-                className="text-white px-4 py-2 rounded hover:bg-blue-600"
-              >
-                Add Sprint
-              </button>
-            </div>
-          </div>
+          <Sidebar 
+            sections={rightSections} 
+            side="right" 
+            width="w-64" 
+            height="h-full" 
+            top="top-16" 
+            padding="p-4" 
+            bgColor="bg-gray-700" 
+            textColor="text-white" 
+            showSettingsButton={false} // Hide settings button in right sidebar
+          />
         </div>
       </div>
     </div>
