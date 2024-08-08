@@ -16,11 +16,11 @@ const Backlog = () => {
   const location = useLocation();
   const [userStories, setUserStories] = useState([]);
   const { projectId } = useContext(Projectcontext);
-  console.log('Current Project ID:', projectId);
+
 
   useEffect(() => {
     // Define the async function to fetch data
-    console.log('Project ID n useEffect:', projectId);
+
     const fetchUserStories = async () => {
       const projectIdStr = String(projectId).trim();
 
@@ -46,7 +46,7 @@ const Backlog = () => {
         }
 
         const data = await response.json();
-        console.log('Fetched data :', data);
+     
         if (data.success && Array.isArray(data.message)) {
           setUserStories(data.message);
         } else {
@@ -61,7 +61,7 @@ const Backlog = () => {
   }, [projectId, location.state?.newUserStoryAdded]); // Fetch data when the projectId or newUserStoryAdded changes
 
   const handleuserstoryClick = (userStoryId) => {
-    console.log('Navigating to User Story Page with ID:', userStoryId);
+    
     navigate('/userstorydashboard', { state: { userStoryId } });
   };
 

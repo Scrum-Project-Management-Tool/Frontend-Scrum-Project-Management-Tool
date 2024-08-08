@@ -49,13 +49,13 @@ const Login = () => {
     if (Object.keys(validationErrors).length === 0) {
       try {
         // Log the formData to verify its content
-        console.log('Form Data:', formData);
+       
 
       const requestBody = JSON.stringify({
         email: formData.email,
         password: formData.password
       });
-      console.log('Request Body:', requestBody);
+      
   
         const response = await fetch('http://localhost:8000/api/v1/users/login', {
           method: 'POST',
@@ -68,9 +68,9 @@ const Login = () => {
         if (response.ok) {
           // Login successful
           const data = await response.json();
-          console.log('Login successful:', data);
+          
           localStorage.setItem('accessToken', data.message.accessToken); // Save token to local storage
-      console.log('Token saved:', data.message.accessToken);
+      
       localStorage.setItem('username', data.message.user.username)
       
       navigate('/allproject'); // Example navigation to dashboard
@@ -83,7 +83,7 @@ const Login = () => {
           } 
         }
       } catch (error) {
-        console.error('Error logging in:', error);
+        
         setErrorMessage('An error occurred during login.');
       }
     }
