@@ -86,7 +86,15 @@ const Backlog = () => {
 
   return (
     <div className="flex flex-col h-screen">
-      <Navbar/>
+      <Navbar>
+      <button
+            className="text-white px-4 py-2 rounded hover:bg-blue-700"
+            style={{ backgroundColor: "#1e3a8a" }}
+            onClick={() => navigate('/createproject')}
+          >
+            Create Project
+          </button>
+      </Navbar>
         
       <div className="flex flex-1">
         <Sidebar sections={leftSections} showSettingsButton={true} />
