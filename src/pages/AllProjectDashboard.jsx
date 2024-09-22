@@ -58,26 +58,30 @@ function AllProjectDashboard() {
                     Create Project
                 </button>
             </Navbar>
-            <div className="mt-16 grid grid-cols-3 gap-4 p-4">
-    {projects.map((project) => (
-        <div
-            key={project._id}
-            className="project-card p-4 bg-gray-200 rounded-md shadow-md cursor-pointer w-56 h-56"
-            onClick={() => handleProjectClick(project)}
+            <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+  {projects.map((project) => (
+    <div
+      key={project._id}
+      className="project-card p-4 bg-gray-200 rounded-md shadow-md cursor-pointer w-full h-auto"
+      onClick={() => handleProjectClick(project)}
+    >
+      <h3 className="text-xl font-bold mb-4">{project.title}</h3>
+      <p className="mb-8 text-sm text-gray-700 break-words">
+        {project.description}
+      </p>
+      <div className="flex justify-center mb-4">
+        <button
+          style={{ backgroundColor: '#1e3a8a' }}
+          className="text-white px-4 py-2 rounded hover:bg-blue-500"
         >
-            <h3 className="text-xl font-bold mb-4">{project.title}</h3>
-            <p className='mb-8'>{project.description}</p>
-            <div className="flex justify-center mb-4">
-                <button
-                    style={{ backgroundColor: '#1e3a8a' }}
-                    className="text-white px-4 py-2 rounded hover:bg-blue-500"
-                >
-                    Go to Project
-                </button>
-            </div>
-        </div>
-    ))}
+          Go to Project
+        </button>
+      </div>
+    </div>
+  ))}
 </div>
+
+
 
 
         </div>
